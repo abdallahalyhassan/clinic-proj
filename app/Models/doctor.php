@@ -12,4 +12,12 @@ class doctor extends Model
         'email',
         'major_id'
     ];
+
+
+    public function major(){
+        return $this->belongsTo(major::class);
+    }
+    public function oppointements(){
+        return $this->hasMany(oppintement::class);
+    }
 }

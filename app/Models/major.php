@@ -10,4 +10,8 @@ class major extends Model
        'name',
         'description'
     ];
+
+    public function doctors(){
+        return $this->hasMany(doctor::class);
+    }
 }

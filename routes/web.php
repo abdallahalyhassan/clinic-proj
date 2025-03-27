@@ -5,6 +5,7 @@ use App\Http\Controllers\PageController;
 use App\Models\doctor;
 use App\Models\major;
 use App\Models\oppintement;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -169,7 +170,21 @@ Route::get('/update_appointement_qery', function () {
 Route::get('/delete_appointement', function () {
     
     oppintement::find(1)->delete();
-});Route::get('/delete_appointement_qery', function () {
+});
+Route::get('/delete_appointement_qery', function () {
     
     DB::table('oppointements')->wheres('id',5)->delete();
 });
+
+
+
+
+
+Route::get('/relation', function () {
+    
+   $x= major::find(2);
+   dd( $x->doctors);
+
+});
+
+

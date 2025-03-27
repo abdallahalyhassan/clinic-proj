@@ -14,4 +14,10 @@ class oppintement extends Model
         'user_id',
         'doctor_id'
     ];
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    public function doctor(){
+        return $this->belongsTo(doctor::class);
+    }
 }
