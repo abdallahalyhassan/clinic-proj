@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\DB;
 
 use App\Http\Controllers\PageController;
 use App\Models\doctor;
@@ -32,11 +33,22 @@ Route::get('/create_major', function () {
         'description' => 'public health'
     ]);
 });
+Route::get('/create_major_qery', function () {
+    DB::table('majors')->insert([
+        'name' => 'public health qery',
+        'description' => 'public health qery'
+    ]);
+});
+
 
 // show
 Route::get('/show_major', function () {
     // dd(major::all());
     dd(major::find(1));
+});
+Route::get('/show_major_qery', function () {
+   
+    dd( DB::table('majors')->get());
 });
 
 //update
@@ -45,11 +57,20 @@ Route::get('/update_major', function () {
     $major=major::find(1);
     $major->update(['name' =>'name after updated']);
 });
+Route::get('/update_major_qery', function () {
+    $major=major::find(1);
+    DB::table('majors')->where('id',3)->update(['name' =>'name after updated qery']);
+});
 //delete
 Route::get('/delete_major', function () {
     // dd(major::all());
     major::find(1)->delete();
 });
+Route::get('/delete_major_qery', function () {
+    
+    DB::table('majors')->where('id',3)->delete();
+});
+
 
 
 
@@ -63,11 +84,23 @@ Route::get('/create_doctor', function () {
         'major_id'=>2
     ]);
 });
+Route::get('/create_doctor_qery', function () {
+    DB::table('doctors')->insert([
+        'name'=>'ahmed qery',
+        'phone'=>'01013542566',
+        'email'=>'aa_qery@email.com',
+        'major_id'=>2
+    ]);
+});
+
 
 // show
 Route::get('/show_doctor', function () {
     // dd(doctor::all());
     dd(doctor::find(1));
+});Route::get('/show_doctor_qery', function () {
+    //
+    dd(DB::table('doctors')->get());
 });
 
 //update
@@ -76,12 +109,20 @@ Route::get('/update_doctor', function () {
     $doctor=doctor::find(1);
     $doctor->update(['name' =>'name after updated']);
 });
+
+Route::get('/update_doctor_qery', function () {
+   
+    DB::table('doctors')->where('id',4)->update(['name' =>'name after updated qery']);
+});
 //delete
 Route::get('/delete_doctor', function () {
     // dd(doctor::all());
     doctor::find(1)->delete();
 });
-
+Route::get('/delete_doctor_qery', function () {
+    
+    DB::table('doctors')->where('id',4)->delete();
+});
 
 // appointement
 
@@ -95,12 +136,25 @@ Route::get('/create_appointement', function () {
         'doctor_id'=>3
     ]);
 });
-
+Route::get('/create_appointement_qery', function () {
+    DB::table('oppointements')->insert([
+        'name'=>'ahmed',
+        'phone'=>'01013542566',
+        'email'=>'ahmed_qery@email.com',
+        'user_id'=>1,
+        'doctor_id'=>3
+    ]);
+});
 // show
 Route::get('/show_appointement', function () {
     // dd(oppintement::all());
     dd(oppintement::find(1));
 });
+Route::get('/show_appointement_qery', function () {
+    // dd( DB::table('oppointements')->wheres('id',5)->get());
+    dd( DB::table('oppointements')->wheres('id',5)->first());
+});
+
 
 //update
 
@@ -108,8 +162,14 @@ Route::get('/update_appointement', function () {
     $oppintement=oppintement::find(1);
     $oppintement->update(['name' =>'name after updated']);
 });
+Route::get('/update_appointement_qery', function () {
+    DB::table('oppointements')->wheres('id',5)->update(['name' =>'name after updated qery']);
+});
 //delete
 Route::get('/delete_appointement', function () {
     
     oppintement::find(1)->delete();
+});Route::get('/delete_appointement_qery', function () {
+    
+    DB::table('oppointements')->wheres('id',5)->delete();
 });
