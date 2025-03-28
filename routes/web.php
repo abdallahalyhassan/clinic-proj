@@ -186,5 +186,9 @@ Route::get('/relation', function () {
    dd( $x->doctors);
 
 });
-
+Route::get('/factory', function () {
+    
+  dd( oppintement::factory(10)->create());
+ 
+ });
 
